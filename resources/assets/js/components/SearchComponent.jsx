@@ -71,6 +71,25 @@ class SearchComponent extends Component {
     return request;
   }
 
+  addToWishList(e) {
+    this.props.addToWishList(e);
+    this.setState({results: []});
+    // clear form
+    document.querySelector('.search-component input').value = '';
+    this.showAlert();
+    setTimeout(()=> {
+      this.dismissAlert();
+    }, 3000);
+  }
+
+  dismissAlert() {
+    document.getElementById('added-alert').classList.add('hide');
+  }
+
+  showAlert() {
+    document.getElementById('added-alert').classList.remove('hide');
+  }
+
   /**
    * Render Results
    * @returns {XML}
@@ -78,7 +97,9 @@ class SearchComponent extends Component {
   renderResults() {
     if (!this.state.results.length) {
       return (
-        <p>No results found.</p>
+        <div>
+          <p>No results found.</p>
+        </div>
       );
     }
     return (
@@ -89,7 +110,7 @@ class SearchComponent extends Component {
               <li className="list-group-item" key={result.id}>
                   {result.text}
                 <button className="btn btn-default btn-xs" data-name={result.text}
-                  onClick={this.props.addToWishList} type="button">
+                  onClick={(e)=> this.addToWishList(e)} type="button">
                   <span data-name={result.text} className="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button>
               </li>
             );
@@ -105,9 +126,12 @@ class SearchComponent extends Component {
         <h3>Search for a Breed</h3>
         <div className="input-group">
           <Debounce time="200" handler="onChange">
-            <input className="form-control" placeholder="Search" type="text" onChange={this.updateSearch.bind(this)}/>
+            <input className="form-control" placeholder={'Search'} type="text" onChange={this.updateSearch.bind(this)}/>
           </Debounce>
           <button type="submit" className="btn btn-default" onClick={this.addNewBreed.bind(this)}>Add To DB</button>
+        </div>
+        <div id="added-alert" className="alert alert-success hide" role="alert">
+          <p>Successfully added to wishlist!</p>
         </div>
         {this.renderResults()}
       </div>

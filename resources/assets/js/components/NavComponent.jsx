@@ -1,6 +1,8 @@
 import React from 'react';
 
-const NavComponent = ()=> {
+const NavComponent = (props)=> {
+
+  console.log(props);
 
   if(window.innerWidth > 768) {
     window.addEventListener('scroll', function() {
@@ -15,7 +17,6 @@ const NavComponent = ()=> {
     });
   }
 
-
   return(
     <nav id="navbar" className="navbar navbar-default navbar-fixed-top">
       <div className="container">
@@ -28,12 +29,12 @@ const NavComponent = ()=> {
             <img src="https://wagwalking.com/img/layout/logo.png" alt="Wag! a dog's best friend"/>
           </a>
           <div className="navbar-mobile-walker-link navbar-btn visible-xs">
-            <a href="https://wagwalking.com/dog-walker" className="btn btn-primary">Become a Walker!</a>
+            <a href="https://wagwalking.com/dog-walker" className="btn btn-primary">{props.ctaText}</a>
           </div>
         </div>
         <div className="collapse navbar-collapse" id="navbar-collapse">
           <div className="pull-right navbar-btn hidden-xs">
-            <a href="https://wagwalking.com/dog-walker" className="btn btn-primary">Become a Walker!</a>
+            <a href="https://wagwalking.com/dog-walker" className="btn btn-primary">{props.ctaText}</a>
           </div>
           <ul className="nav navbar-nav navbar pull-right">
             <li><a href="https://wagwalking.com" >Home</a></li>

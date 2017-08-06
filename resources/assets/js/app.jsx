@@ -17,20 +17,19 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavComponent/>
+        <NavComponent ctaText="Become a Walker!"/>
         <main className="container">
-          <div className="alert alert-success">
+          <div className="alert alert-info">
             <p>
-              To get started, search for a dog breed and click the "plus" button to add to your wishlist.
+              <span style={{fontWeight: 'bold'}}>Notice:</span> Search for a dog breed and click the "plus" button to add to your wishlist.
               If you can't find a breed, simply enter the name and click "Add to DB".
-              (<a href="#" onClick={this.dismiss.bind(this)}>dismiss</a>)
+              <a href="#" onClick={this.dismiss.bind(this)} className="alert-link"> Dismiss</a>
             </p>
           </div>
-          <div className="alert alert-success">
+          <div className="alert alert-info">
             <p>
-              Your wishlist is automatically saved any time you make any changes,
-              so you can access your wishlist any time, any where!
-              (<a href="#" onClick={this.dismiss.bind(this)}>dismiss</a>)
+              <span style={{fontWeight: 'bold'}}>Notice:</span> Your wishlist is automatically saved any time you make any changes,
+              so you can access your wishlist any time, any where!<a href="#" onClick={this.dismiss.bind(this)} className="alert-link"> Dismiss</a>
             </p>
           </div>
           <WishListComponent/>
