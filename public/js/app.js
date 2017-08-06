@@ -29042,6 +29042,11 @@ var SearchComponent = function (_Component) {
       this.setState({ search: event.target.value });
       this.getItemsByName(this.state.search);
     }
+  }, {
+    key: 'getBaseUrl',
+    value: function getBaseUrl() {
+      return window.location.hostname !== 'localost' ? '/api' : '/public/api';
+    }
 
     /**
      * Get Items
@@ -29051,7 +29056,8 @@ var SearchComponent = function (_Component) {
   }, {
     key: 'getItems',
     value: function getItems() {
-      var request = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/breeds');
+      var base = this.getBaseUrl();
+      var request = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get(base + '/breeds');
       var _this = this;
       request.then(function (response) {
         _this.setState({ results: response.data });
@@ -29069,7 +29075,8 @@ var SearchComponent = function (_Component) {
   }, {
     key: 'getItemsByName',
     value: function getItemsByName(term) {
-      var request = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/breeds/search/' + term);
+      var base = this.getBaseUrl();
+      var request = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get(base + '/breeds/search/' + term);
       var _this = this;
       request.then(function (response) {
         _this.setState({ results: response.data });
@@ -29086,7 +29093,8 @@ var SearchComponent = function (_Component) {
   }, {
     key: 'addNewBreed',
     value: function addNewBreed() {
-      var request = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/breeds/', { text: this.state.search });
+      var base = this.getBaseUrl();
+      var request = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post(base + '/breeds/', { text: this.state.search });
       request.then(function (response) {
         return response.data;
       });

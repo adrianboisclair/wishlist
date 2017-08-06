@@ -23,12 +23,17 @@ class SearchComponent extends Component {
     this.getItemsByName(this.state.search);
   }
 
+  getBaseUrl() {
+    return window.location.hostname !== 'localost' ? '/api' : '/public/api';
+  }
+
   /**
    * Get Items
    * @returns {AxiosPromise}
    */
   getItems() {
-    const request = axios.get(`/api/breeds`);
+    const base = this.getBaseUrl();
+    const request = axios.get(`${base}/breeds`);
     const _this = this;
     request.then(response => {
       _this.setState({results: response.data});
@@ -43,7 +48,8 @@ class SearchComponent extends Component {
    * @returns {AxiosPromise}
    */
   getItemsByName(term) {
-    const request = axios.get(`/api/breeds/search/${term}`);
+    const base = this.getBaseUrl();
+    const request = axios.get(`${base}/breeds/search/${term}`);
     const _this = this;
     request.then(response => {
       _this.setState({results: response.data});
@@ -57,7 +63,8 @@ class SearchComponent extends Component {
    * @returns {AxiosPromise}
    */
   addNewBreed() {
-    const request = axios.post(`/api/breeds/`, {text: this.state.search});
+    const base = this.getBaseUrl();
+    const request = axios.post(`${base}/breeds/`, {text: this.state.search});
     request.then(response => {
       return response.data;
     });
