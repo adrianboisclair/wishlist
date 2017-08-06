@@ -16,7 +16,7 @@ class WishListComponent extends Component{
   }
 
   getBaseUrl() {
-    return window.location.hostname !== 'localost' ? '/api' : '/public/api';
+    return window.location.hostname === 'localhost' ? '/api' : '/public/api';
   }
 
   /**

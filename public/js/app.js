@@ -29045,7 +29045,7 @@ var SearchComponent = function (_Component) {
   }, {
     key: 'getBaseUrl',
     value: function getBaseUrl() {
-      return window.location.hostname !== 'localost' ? '/api' : '/public/api';
+      return window.location.hostname === 'localhost' ? '/api' : '/public/api';
     }
 
     /**
@@ -57021,7 +57021,7 @@ var WishListComponent = function (_Component) {
   _createClass(WishListComponent, [{
     key: 'getBaseUrl',
     value: function getBaseUrl() {
-      return window.location.hostname !== 'localost' ? '/api' : '/public/api';
+      return window.location.hostname === 'localhost' ? '/api' : '/public/api';
     }
 
     /**
