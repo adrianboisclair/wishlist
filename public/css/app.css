@@ -8415,18 +8415,20 @@ nav.active .navbar-brand img {
   max-height: 30px;
 }
 
-.navbar-nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  margin: 7px -15px;
-  width: 60%;
+@media (min-width: 768px) {
+  .navbar-nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    margin: 7px -15px;
+    width: 60%;
+  }
 }
 
 main.container {
@@ -8507,7 +8509,7 @@ main.container {
 
 footer {
   color: white;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: #62699d !important;
 }
 
@@ -8528,6 +8530,15 @@ footer a {
 }
 
 @media (max-width: 786px) {
+  #navbar-collapse {
+    border: none;
+  }
+
+  #navbar-collapse ul.nav.navbar-nav.navbar.pull-right {
+    float: none !important;
+    background: white;
+  }
+
   .navbar-header {
     -webkit-box-align: end !important;
         -ms-flex-align: end !important;
