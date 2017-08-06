@@ -2,16 +2,18 @@ import React from 'react';
 
 const NavComponent = ()=> {
 
-  window.addEventListener('scroll', function() {
-    const navBar = document.getElementById('navbar');
-    if(navBar) {
-      if(window.scrollY > 20 && !navBar.classList.contains('active')) {
-        navBar.classList.add('active');
-      }else if(window.scrollY < 20 && navBar.classList.contains('active')) {
-        navBar.classList.remove('active');
+  if(window.innerWidth > 768) {
+    window.addEventListener('scroll', function() {
+      const navBar = document.getElementById('navbar');
+      if(navBar) {
+        if(window.scrollY > 20 && !navBar.classList.contains('active')) {
+          navBar.classList.add('active');
+        }else if(window.scrollY < 20 && navBar.classList.contains('active')) {
+          navBar.classList.remove('active');
+        }
       }
-    }
-  });
+    });
+  }
 
 
   return(

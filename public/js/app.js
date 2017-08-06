@@ -57266,16 +57266,18 @@ var wishlistItems = function wishlistItems() {
 
 var NavComponent = function NavComponent() {
 
-  window.addEventListener('scroll', function () {
-    var navBar = document.getElementById('navbar');
-    if (navBar) {
-      if (window.scrollY > 20 && !navBar.classList.contains('active')) {
-        navBar.classList.add('active');
-      } else if (window.scrollY < 20 && navBar.classList.contains('active')) {
-        navBar.classList.remove('active');
+  if (window.innerWidth > 768) {
+    window.addEventListener('scroll', function () {
+      var navBar = document.getElementById('navbar');
+      if (navBar) {
+        if (window.scrollY > 20 && !navBar.classList.contains('active')) {
+          navBar.classList.add('active');
+        } else if (window.scrollY < 20 && navBar.classList.contains('active')) {
+          navBar.classList.remove('active');
+        }
       }
-    }
-  });
+    });
+  }
 
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     'nav',
