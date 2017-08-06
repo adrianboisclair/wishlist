@@ -15,12 +15,17 @@ class WishListComponent extends Component{
     this.getWishListByUser();
   }
 
+  getBaseUrl() {
+    return window.location.hostname !== 'localost' ? '/api' : '/public/api';
+  }
+
   /**
    * Add to Wishlist
    * @param e
    * @returns {AxiosPromise}
    */
   addToWishList(e) {
+    const base = this.getBaseUrl();
     const userId = window.userId;
     const currentWishList = JSON.parse(this.state.list.text);
     const newItem = [e.target.getAttribute("data-name")];
@@ -28,7 +33,7 @@ class WishListComponent extends Component{
 
     if(!currentWishList.includes(newItem[0])) {
       this.setState({list : { text: text }});
-      const request = axios.post(`/api/wishlists/${userId}`, {_method: 'PUT', text, user_id: userId});
+      const request = axios.post(`${base}/wishlists/${userId}`, {_method: 'PUT', text, user_id: userId});
       request.then(response => {
         return response.data;
       });
@@ -55,7 +60,8 @@ class WishListComponent extends Component{
   }
 
   updateWishlist(list) {
-    const request = axios.post(`/api/wishlists/${userId}`, {_method: 'PUT', text: JSON.stringify(list), user_id: userId});
+    const base = this.getBaseUrl();
+    const request = axios.post(`${base}/wishlists/${userId}`, {_method: 'PUT', text: JSON.stringify(list), user_id: userId});
     request.then(response => {
       return response.data;
     });
@@ -67,8 +73,9 @@ class WishListComponent extends Component{
    * @returns {AxiosPromise}
    */
   getWishListByUser() {
+    const base = this.getBaseUrl();
     const userId = window.userId;
-    const request = axios.get(`/api/wishlists/${userId}`);
+    const request = axios.get(`${base}/wishlists/${userId}`);
     const _this = this;
     request.then(response => {
       _this.setState({list: response.data});

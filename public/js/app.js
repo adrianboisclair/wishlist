@@ -57018,16 +57018,22 @@ var WishListComponent = function (_Component) {
     return _this2;
   }
 
-  /**
-   * Add to Wishlist
-   * @param e
-   * @returns {AxiosPromise}
-   */
-
-
   _createClass(WishListComponent, [{
+    key: 'getBaseUrl',
+    value: function getBaseUrl() {
+      return window.location.hostname !== 'localost' ? '/api' : '/public/api';
+    }
+
+    /**
+     * Add to Wishlist
+     * @param e
+     * @returns {AxiosPromise}
+     */
+
+  }, {
     key: 'addToWishList',
     value: function addToWishList(e) {
+      var base = this.getBaseUrl();
       var userId = window.userId;
       var currentWishList = JSON.parse(this.state.list.text);
       var newItem = [e.target.getAttribute("data-name")];
@@ -57035,7 +57041,7 @@ var WishListComponent = function (_Component) {
 
       if (!currentWishList.includes(newItem[0])) {
         this.setState({ list: { text: text } });
-        var request = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/wishlists/' + userId, { _method: 'PUT', text: text, user_id: userId });
+        var request = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post(base + '/wishlists/' + userId, { _method: 'PUT', text: text, user_id: userId });
         request.then(function (response) {
           return response.data;
         });
@@ -57065,7 +57071,8 @@ var WishListComponent = function (_Component) {
   }, {
     key: 'updateWishlist',
     value: function updateWishlist(list) {
-      var request = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/wishlists/' + userId, { _method: 'PUT', text: JSON.stringify(list), user_id: userId });
+      var base = this.getBaseUrl();
+      var request = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post(base + '/wishlists/' + userId, { _method: 'PUT', text: JSON.stringify(list), user_id: userId });
       request.then(function (response) {
         return response.data;
       });
@@ -57080,8 +57087,9 @@ var WishListComponent = function (_Component) {
   }, {
     key: 'getWishListByUser',
     value: function getWishListByUser() {
+      var base = this.getBaseUrl();
       var userId = window.userId;
-      var request = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/wishlists/' + userId);
+      var request = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get(base + '/wishlists/' + userId);
       var _this = this;
       request.then(function (response) {
         _this.setState({ list: response.data });
