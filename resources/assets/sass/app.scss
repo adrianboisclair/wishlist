@@ -23,6 +23,7 @@ button.btn.btn-default.btn-xs {
 
 nav{
   background: #fff;
+  box-shadow: 0 0 5px 0 black;
   height: 70px;
   transition: all 0.5s ease;
   .navbar-brand img{
@@ -40,6 +41,7 @@ nav{
 }
 
 nav.active{
+  box-shadow: 0 0 0 0 black;
   height: 40px;
   .pull-right.navbar-btn.hidden-xs{
     margin: 6px 0;
