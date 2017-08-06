@@ -57015,6 +57015,13 @@ var SearchComponent = function (_Component) {
       });
       return request;
     }
+
+    /**
+     * Local Add To Wishlist Method
+     * Updates wishlist components and fires parent add method
+     * @param e
+     */
+
   }, {
     key: 'addToWishList',
     value: function addToWishList(e) {

@@ -71,6 +71,11 @@ class SearchComponent extends Component {
     return request;
   }
 
+  /**
+   * Local Add To Wishlist Method
+   * Updates wishlist components and fires parent add method
+   * @param e
+   */
   addToWishList(e) {
     this.props.addToWishList(e);
     this.setState({results: []});
